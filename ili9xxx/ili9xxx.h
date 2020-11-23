@@ -17,12 +17,41 @@
 #ifndef CATIE_SIXTRON_ILI9XXX_H_
 #define CATIE_SIXTRON_ILI9XXX_H_
 
+#include "mbed.h"
+
 namespace sixtron {
+
+//ILI9XXX registers
+#define CMD_NOP     	0x00
+#define CMD_SWRESET 	0x01
+#define CMD_SLPIN   	0x10
+#define CMD_SLPOUT  	0x11
+#define CMD_PTLON   	0x12
+#define CMD_NORML   	0x13
+#define CMD_DISPON  	0x29
+#define CMD_CLMADRS   	0x2A
+#define CMD_PGEADRS   	0x2B
+#define CMD_RAMWR   	0x2C
 
 class ILI9XXX
 {
 public:
-    ILI9XXX();
+    ILI9XXX(SPI *spi, PinName cs, PinName dcx, PinName backlight);
+    void exit_sleep();
+    void write_command(uint8_t cmd);
+    void write_data(uint8_t data, int len = 1);
+    void setAddr(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
+    void clearScreen(uint16_t color);
+    void displayImage(uint16_t *image, uint16_t width, uint16_t height);
+    virtual void init();
+
+private:
+    SPI *_spi;
+    DigitalOut _cs;
+    DigitalOut _dcx;
+    PwmOut _backlight;
+
+    void write_data_16(uint16_t *data, int t);
 };
 
 } // namespace sixtron
