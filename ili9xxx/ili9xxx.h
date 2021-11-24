@@ -32,6 +32,7 @@ namespace sixtron {
 #define CMD_CLMADRS   	0x2A
 #define CMD_PGEADRS   	0x2B
 #define CMD_RAMWR   	0x2C
+#define CMD_PIXFMT  	0x3A
 
 class ILI9XXX
 {
