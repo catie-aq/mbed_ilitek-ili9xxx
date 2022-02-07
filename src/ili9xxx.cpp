@@ -95,7 +95,7 @@ void ILI9XXX::displayImage(uint16_t *image, uint16_t width, uint16_t height){
 
 void ILI9XXX::clearScreen(uint16_t color){
 	int px;
-	uint16_t table[SIZE];
+	static uint16_t table[SIZE];
 	setAddr(0,0,128,160);
 	
 	for (px = 0; px < SIZE; px++){

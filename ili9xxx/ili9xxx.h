@@ -44,6 +44,7 @@ public:
     void setAddr(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
     void clearScreen(uint16_t color);
     void displayImage(uint16_t *image, uint16_t width, uint16_t height);
+    void write_data_16(uint16_t *data, int t);
     virtual void init();
 
 private:
@@ -52,7 +53,6 @@ private:
     DigitalOut _dcx;
     PwmOut _backlight;
 
-    void write_data_16(uint16_t *data, int t);
 };
 
 } // namespace sixtron
